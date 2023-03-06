@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:53:09 by edelarbr          #+#    #+#             */
-/*   Updated: 2022/12/16 17:13:14 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:57:49 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ static void	selectfunction(char topf, int *ret, va_list ap)
 	else if (topf == 's')
 		*ret += ft_putstr_pf(va_arg(ap, char *));
 	else if (topf == 'p')
-		*ret += ft_putadress_pf(va_arg(ap, unsigned long long));
+	{
+		*ret += ft_putstr_pf("0x");
+		if (*ret >= 0)
+			*ret += ft_putadress_pf(va_arg(ap, unsigned long long));
+	}
 	else if (topf == 'd' || topf == 'i')
 		*ret += ft_putnbr_pf(((long long)va_arg(ap, int)));
 	else if (topf == 'u')
